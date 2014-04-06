@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<constant name="struts.objectFactory" value="spring" />
+	<package name="oa" extends="struts-default" namespace="/">
+		<global-results>
+			<result name="operator_success">
+				/direct.jsp
+			</result>
+			<result name="operator_failure">
+				/JSP/operator_failure.jsp
+			</result>
+		</global-results>
+		<action name="UserAction" class="com.oa.action.UserAction" >
+			<result name="login_failure" >/login.jsp</result>
+			<result name="login_success">/index.jsp</result>
+			<result name="modify">/JSP/yuangong.jsp</result>
+			<result name="accountModify">/JSP/accountModify.jsp</result>
+		</action>
+		<action name="OrganizationAction" class="com.oa.action.OrganizationAction" >
+			<result name="listOrg" >/JSP/organizationManage.jsp</result>
+		</action>
+		<action name="PersonAction" class="com.oa.action.PersonAction">
+			<result name="input">/JSP/operator_failure.jsp</result>
+			<result name="success" >/JSP/listyuangong.jsp</result>
+			<result name="edit" >/JSP/yuangong.jsp</result>
+		</action>
+		<action name="ModuleAction" class="com.oa.action.ModuleAction">
+			<result name="moduleList">
+				/JSP/listModule.jsp
+			</result>
+		</action>
+		
+	</package>
+</struts>
