@@ -7,8 +7,7 @@
 	public class RemoveSVN {
 		@SuppressWarnings("static-access")
 		public static void main(String[] args) throws Exception {
-			new FolderDeleter().deleteDirs("E:/javaweb_____2/OA");
-			
+			new FolderDeleter().deleteDirs("C:\\Users\\Big mac\\Documents\\Tencent Files\\2452064683\\FileRecv\\FOD备份\\FOD备份\\fod20130614");
 		}
 	}
 

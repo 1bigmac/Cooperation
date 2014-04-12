@@ -45,7 +45,7 @@ public class Person implements Serializable{
 	
 	private Organization organization;
 	
-	private Set<User> users=new HashSet<User>();
+	private Set<Users> users=new HashSet<Users>();
 	
 	@Id
 	@GeneratedValue
@@ -102,10 +102,10 @@ public class Person implements Serializable{
 	}
 	
 	@OneToMany(mappedBy="personid",cascade={CascadeType.ALL})
-	public Set<User> getUsers() {
+	public Set<Users> getUsers() {
 		return users;
 	}
-	public void setUsers(Set<User> users) {
+	public void setUsers(Set<Users> users) {
 		this.users = users;
 	}
 	public String getPosition() {

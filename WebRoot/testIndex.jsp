@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.oa.model.User"%>
+<%@page import="com.oa.model.Users"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();

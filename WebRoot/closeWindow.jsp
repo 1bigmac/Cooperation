@@ -24,6 +24,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-  <center>操作成功</center>
+    <body class="ContentBody">
+	<span id="time">2</span>秒后回到主题，请等待
+	
+<script language="JavaScript" type="text/javascript">
+	function delayURL(url) {
+	alert('ol');
+		var delay = document.getElementById("time").innerHTML;
+		if (delay > 0) {
+			delay--;
+			document.getElementById("time").innerHTML = delay;
+		} else {
+			window.location.href = url;
+		}
+		setTimeout("delayURL('" + url + "')", 1000);
+	}
+</script>
+
   </body>
 </html>

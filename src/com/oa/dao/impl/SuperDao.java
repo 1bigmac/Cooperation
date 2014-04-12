@@ -32,6 +32,7 @@ public class SuperDao implements SuperDaoInte{
 	public Object select(Class clazz, Serializable id) {
 		return hibernateTemplate.get(clazz, id);
 	}
+	
 
 	public List<Object> select(String hql) {
 		return hibernateTemplate.find(hql);

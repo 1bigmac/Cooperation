@@ -3,13 +3,13 @@ package com.oa.service;
 
 import java.io.Serializable;
 
-import com.oa.model.User;
+import com.oa.model.Users;
 
 public interface UserService {
-	public User login(String hql,Object[] condition);
-	public void delete(User user);
-	public void update(User user);
-	public Serializable addUser(User user);
+	public Users login(String hql,Object[] condition);
+	public void delete(Users user);
+	public void update(Users user);
+	public Serializable addUser(Users user);
 	
-	public User exits(Serializable account);
+	public Users exits(Serializable account);
 }

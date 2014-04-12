@@ -193,7 +193,7 @@ function deleteChose(){
 															模块路径
 														</td>
 														<td width="9%" align="center" bgcolor="#EEEEEE">
-															模块
+															唯一标示
 														</td>
 
 														<td width="4%" align="center" bgcolor="#EEEEEE">
@@ -263,7 +263,7 @@ function deleteChose(){
 						</td>
 						<td width="49%" align="right">
 							[
-							<a href="moduleActon!moduleList?index=1" target="mainFrame"
+							<a href="ModuleAction!moduleList?index=1" target="mainFrame"
 								class="right-font08">首页</a> |
 							<a
 								href="ModuleAction!moduleList?<s:if test='(#request.currentIndex-1)< 0'>index=1</s:if><s:else >index=${requestScope.currentIndex-1 }</s:else>"

@@ -40,14 +40,14 @@ public class ModuleAction extends ActionSupport {
 		 if(pid!=null){
 				module.setPid(moduleService.getModle(pid));
 		 }
-		 returns="ModuleAcion!moduleList";
+		 returns="ModuleAction!moduleList";
 		Serializable flag=moduleService.addModule(module);
 		return flag==null ? "operator_failure" : "operator_success";
 	}
 	
 	public String deletemodule(){
 		System.out.println("deleteperson");
-		returns="ModuleAcion!moduleList";
+		returns="ModuleAction!moduleList";
 		HttpServletRequest request=ServletActionContext.getRequest();
 		String []ids=request.getParameterValues("delid");
 		System.out.println(ids.length+"sdfsadf");
@@ -55,7 +55,7 @@ public class ModuleAction extends ActionSupport {
 			System.out.println(ids[i]);
 		}
 		moduleService.deleteModules(ids);
-		returns="ModuleAcion!moduleList";
+		returns="ModuleAction!moduleList";
 		return "operator_success";
 	}
 	public Module getModule() {

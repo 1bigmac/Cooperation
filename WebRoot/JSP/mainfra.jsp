@@ -24,7 +24,6 @@ html { overflow-x: ; overflow-y: ; border:0;}
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td bgcolor="#4AA3D8">
-    <s:debug></s:debug>
     </td>
   </tr>
   <tr>

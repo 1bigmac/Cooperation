@@ -2,16 +2,16 @@ package com.oa.dao;
 
 import java.io.Serializable;
 
-import com.oa.model.User;
+import com.oa.model.Users;
 
 public interface UserDao {
-	public User login(String hql,Object[] conditions);
+	public Users login(String hql,Object[] conditions);
 	
-	public Serializable addUser(User user);
+	public Serializable addUser(Users user);
 	
-	public void deleteUser(User user) ;
+	public void deleteUser(Users user) ;
 	
-	public void updateUser(User user);
+	public void updateUser(Users user);
 	
-	public User exits(Serializable account);
+	public Users exits(Serializable account);
 }

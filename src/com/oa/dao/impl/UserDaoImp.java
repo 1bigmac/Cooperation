@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 import com.oa.dao.SuperDaoInte;
 import com.oa.dao.UserDao;
-import com.oa.model.User;
+import com.oa.model.Users;
 
 @Component("userDao")
 public class UserDaoImp implements UserDao {
 	private SuperDaoInte superDao;
 
-	public User login(String hql, Object[] conditions) {
-		return (User) superDao.check(hql, conditions);
+	public Users login(String hql, Object[] conditions) {
+		return (Users) superDao.check(hql, conditions);
 	}
 
 	public SuperDaoInte getSuperDao() {
@@ -27,19 +27,19 @@ public class UserDaoImp implements UserDao {
 		this.superDao = superDao;
 	}
 
-	public Serializable addUser(User user) {
+	public Serializable addUser(Users user) {
 		return superDao.add(user);
 	}
 
-	public void deleteUser(User user) {
+	public void deleteUser(Users user) {
 		superDao.delete(user);
 	}
 
-	public User exits(Serializable account) {
-		return (User) superDao.select(User.class, account);
+	public Users exits(Serializable account) {
+		return (Users) superDao.select(Users.class, account);
 	}
 
-	public void updateUser(User user) {
+	public void updateUser(Users user) {
 		superDao.update(user);
 	}
 

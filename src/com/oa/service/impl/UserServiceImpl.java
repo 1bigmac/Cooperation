@@ -7,14 +7,14 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.oa.dao.UserDao;
-import com.oa.model.User;
+import com.oa.model.Users;
 import com.oa.service.UserService;
 @Component("userService")
 public class UserServiceImpl implements UserService {
 	
 	private UserDao userDao;
 
-	public User login(String hql, Object[] condition) {
+	public Users login(String hql, Object[] condition) {
 		return userDao.login(hql, condition);
 	}
 
@@ -27,19 +27,19 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
-	public void delete(User user) {
+	public void delete(Users user) {
 		userDao.deleteUser(user);
 	}
 
-	public void update(User user) {
+	public void update(Users user) {
 		userDao.updateUser(user);
 	}
 
-	public Serializable addUser(User user) {
+	public Serializable addUser(Users user) {
 		return userDao.addUser(user);
 	}
 
-	public User exits(Serializable account) {
+	public Users exits(Serializable account) {
 		return userDao.exits(account);
 	}
 

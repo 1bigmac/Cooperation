@@ -11,14 +11,14 @@ import org.apache.struts2.ServletActionContext;
 import org.junit.runner.Request;
 
 import com.oa.model.Person;
-import com.oa.model.User;
+import com.oa.model.Users;
 import com.oa.service.PersonService;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PersonAction extends ActionSupport {
 
 	private Person person;
-	private User user;
+	private Users user;
 	private PersonService personService;
 	private int index;
 	private String returns;
@@ -106,11 +106,11 @@ public class PersonAction extends ActionSupport {
 		this.index = index;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

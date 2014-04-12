@@ -23,7 +23,7 @@
 			<value>classpath:jdbc.properties</value>
 		</property>
 	</bean>
-	
+
 	<bean id="dataSource" destroy-method="close"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -36,16 +36,23 @@
 		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
-			<value>com.oa.model</value>
+		 <value>com.oa.model</value> 
 		</property>
+	 	<property name="mappingLocations">
+			<list>
+				<value>classpath*:/org/jbpm/**/*.hbm.xml</value>
+			</list>
+		</property> 
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">false</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				   <prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
 			</props>
 		</property>
+
 	</bean>
 
 	<bean id="myTxManager"
@@ -62,16 +69,28 @@
 
 	<tx:advice id="txAdvice" transaction-manager="myTxManager">
 		<tx:attributes>
-<!--			<tx:method name="exists" read-only="true" />-->
-<!--			<tx:method name="save*" propagation="REQUIRED" />-->
-<!--			<tx:method name="update*" propagation="REQUIRED" />-->
-<!--			<tx:method name="delete*" propagation="REQUIRED" />-->
-			<tx:method name="*" propagation="REQUIRED"/>
+			<!-- <tx:method name="exists" read-only="true" /> -->
+			<!-- <tx:method name="save*" propagation="REQUIRED" /> -->
+			<!-- <tx:method name="update*" propagation="REQUIRED" /> -->
+			<!-- <tx:method name="delete*" propagation="REQUIRED" /> -->
+			<tx:method name="*" propagation="REQUIRED" />
 		</tx:attributes>
 	</tx:advice>
 
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+	<!-- 配置JbmpConfiguration -->
+
+	<bean id="jbpmConfiguration"
+		class="org.springmodules.workflow.jbpm31.LocalJbpmConfigurationFactoryBean">
+		<property name="sessionFactory" ref="sessionFactory" />
+		<property name="configuration" value="classpath:jbpm.cfg.xml" />
+	</bean>
+
+	<bean id="jbpmTemplate" class="org.springmodules.workflow.jbpm31.JbpmTemplate">
+		<property name="jbpmConfiguration" ref="jbpmConfiguration" />
 	</bean>
 
 

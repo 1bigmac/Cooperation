@@ -16,7 +16,7 @@ String basePath =request.getScheme()+"://"+request.getServerName()+":"+request.g
 	<frame src="JSP/top.jsp" name="topFrame" scrolling="No"
 		noresize="noresize" id="topFrame" title="topFrame" />
 	<frameset cols="213,*" frameborder="no" border="0" framespacing="0">
-		<frame src="TREE.jsp" name="leftFrame" scrolling="No"
+		<frame src="JSP/left.jsp" name="leftFrame" scrolling="No"
 			noresize="noresize" id="leftFrame" title="leftFrame" />
 		<frame src="JSP/mainfra.jsp" name="mainFrame" id="mainFrame"
 			title="mainFrame" />

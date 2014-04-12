@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="com.oa.model.User"%>
+<%@page import="com.oa.model.Users"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <%
 	String path = request.getContextPath();
@@ -42,7 +42,6 @@ body {
 				<td width="221">
 					<table width="95%" border="0" cellpadding="0" cellspacing="0"
 						class="login-text01">
-
 						<tbody>
 							<tr>
 								<td>
@@ -56,7 +55,6 @@ body {
 											<tr>
 												<td height="40" align="center">&nbsp;</td>
 											</tr>
-
 										</tbody>
 									</table></td>
 								<td><img src="login_files/line01.gif" width="5"
@@ -79,8 +77,6 @@ body {
 									<td height="35" class="login-text02">密 码： <br></td>
 									<td><input name="user.password" type="password"></td>
 								</tr>
-
-
 								<tr>
 									<td height="35">&nbsp;</td>
 									<td><input name="Submit2" type="submit"
@@ -89,7 +85,7 @@ body {
 										name="Submit232" type="submit" class="right-button02"
 										value="重 置" />
 									</td>
-									</td>
+									
 								</tr>
 							</tbody>
 						</table>

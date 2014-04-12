@@ -30,6 +30,11 @@
 				/JSP/listModule.jsp
 			</result>
 		</action>
+		<action name="WorkFlowAction" class="com.oa.action.WorkFlowAction">
+			<result name="listWorkFlow">
+				/JSP/listWorkFlow.jsp
+			</result>
+		</action>
 		
 	</package>
 </struts>

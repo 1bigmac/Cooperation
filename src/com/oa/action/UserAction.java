@@ -6,7 +6,7 @@ import org.apache.struts2.ServletActionContext;
 
 import com.oa.model.Module;
 import com.oa.model.Person;
-import com.oa.model.User;
+import com.oa.model.Users;
 import com.oa.service.ModuleService;
 import com.oa.service.PersonService;
 import com.oa.service.UserService;
@@ -22,15 +22,15 @@ public class UserAction extends ActionSupport {
 	private PersonService personService;
 	private ModuleService moduleService;
 	
-	private User user;
+	private Users user;
 	private String returns;
 	
 	public String login(){
 		System.out.println(user.toString());
-		User login=userService.login("from User u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});
+		Users login=userService.login("from Users u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});
 		if(login!=null){
 			ServletActionContext.getRequest().getSession().setAttribute("admin", login);
-//			ServletActionContext.getRequest().getSession().setAttribute("modules", moduleService.getAllModules(Module.class, " and s.pid =null"));
+			ServletActionContext.getRequest().getSession().setAttribute("modules", moduleService.getCategories());
 			moduleService.getCategories();
 			return "login_success";
 		}
@@ -38,12 +38,12 @@ public class UserAction extends ActionSupport {
 	}
 	
 	public String exits(){
-		User exits=userService.exits(user.getAccount());
+		Users exits=userService.exits(user.getAccount());
 		return null;
 	}
 	
 	public String selfModify(){
-		User user=(User) ServletActionContext.getRequest().getSession().getAttribute("admin");
+		Users user=(Users) ServletActionContext.getRequest().getSession().getAttribute("admin");
 		System.out.println(user.toString());
 		System.out.println("=======+++++=====");
 		Person person=personService.getPerson(user.getPersonid().getId());
@@ -68,11 +68,11 @@ public class UserAction extends ActionSupport {
 		this.userService = userService;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

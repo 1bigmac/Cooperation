@@ -58,7 +58,11 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/ueditor.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xwork-core-2.3.15.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/asm-3.3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm-identity.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jcr-1.0.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/bsh.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm-jpdl.jar" sourcepath="Z:/soft/jbpm/spring-modules-0.8/sources/spring-modules-jbpm31-src.zip"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-modules-jbpm31.jar" sourcepath="Z:/soft/jbpm/spring-modules-0.8/sources/spring-modules-jbpm31-src.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

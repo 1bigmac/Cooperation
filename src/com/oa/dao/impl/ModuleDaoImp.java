@@ -101,9 +101,12 @@ public class ModuleDaoImp implements ModuleDao {
 	public Map<Module, Set<Module>> getMenus(){
 		return categories;
 	}
+
 	public void getCategories() {
+		if (categories.size()==0) {
 			System.err.println("categories is null");
-			List<Module> parentModule = getAllModules(Module.class," and s.pid =null");
+			List<Module> parentModule = getAllModules(Module.class,
+					" and s.pid is null");
 			System.out.println(parentModule.size() + "pis =null");
 			for (int i = 0; i < parentModule.size(); i++) {
 				Set<Module> temp = parentModule.get(i).getModules();
@@ -115,15 +118,16 @@ public class ModuleDaoImp implements ModuleDao {
 					}
 				}
 			}
-	//		for (Map.Entry<Module, Set<Module>> entry : categories.entrySet()) {
-	//			System.out.println(entry.getKey().toString());
-	//			if (entry.getValue() == null) {
-	//
-	//			} else {
-	//				for (Module m : entry.getValue()) {
-	//					System.out.println(m.toString());
-	//				}
-	//			
+			// for (Map.Entry<Module, Set<Module>> entry :
+			// categories.entrySet()) {
+			// System.out.println(entry.getKey().toString());
+			// if (entry.getValue() == null) {
+			//
+			// } else {
+			// for (Module m : entry.getValue()) {
+			// System.out.println(m.toString());
+			// }
+		}
 	}
 
 }
