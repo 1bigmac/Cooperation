@@ -1,11 +1,11 @@
-package com.oa.service.impl;
+package com.oa.service;
 
 import java.util.List;
 
 import com.oa.model.ApproveHistory;
 
-public class ApproveHistoryImp {
-	
+public interface ApproveHistoryService {
+
 	/**
 	 * 审批公文，记录审批信息
 	 * @param approveInfo 审批信息
@@ -13,20 +13,14 @@ public class ApproveHistoryImp {
 	 * @param approverId 审批者，取当前登录用户的ID
 	 * @param back 是否回退
 	 */
-	public void addApproveHistory(ApproveHistory approveInfo,int documentId,int approverId,boolean back){
-		
-	}
-	
-	
-	
+	public abstract void addApproveHistory(ApproveHistory approveInfo,
+			int documentId, int approverId, boolean back);
+
 	/**
 	 * 查询公文的审批历史（即查询公文都经过了哪些人审批）
 	 * @param documentId 公文的ID
 	 * @return
 	 */
-	public List<ApproveHistory> searchApproveHistory(int documentId){
-		
-		return null;
-	}
+	public abstract List<ApproveHistory> searchApproveHistory(int documentId);
 
 }

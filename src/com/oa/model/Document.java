@@ -1,8 +1,8 @@
 package com.oa.model;
 
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.Arrays;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -22,6 +22,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="oa_document")
 public class Document implements Serializable{
+	public static String New="新建";
+	public static String Finish="完成";
 	/**
 	 * 文档 id
 	 */
@@ -54,6 +56,8 @@ public class Document implements Serializable{
 	 * 所属工作流程
 	 */
 	private WorkFlow workFlow;
+	
+	private Long processInstanceId;
 	
 	@Id
 	@GeneratedValue
@@ -115,5 +119,11 @@ public class Document implements Serializable{
 		return "Document [id=" + id + ", title=" + title + ", Content="
 				+ Arrays.toString(Content) + ", description=" + description
 				+ ", createTime=" + createTime + ", status=" + status + "]";
+	}
+	public Long getProcessInstanceId() {
+		return processInstanceId;
+	}
+	public void setProcessInstanceId(Long processInstanceId) {
+		this.processInstanceId = processInstanceId;
 	}
 }

@@ -64,6 +64,7 @@ public class JbpmCoreImp implements JbpmCore {
 //			}
 //		}
 		context.save(instance);
+		context.close();
 		// email 没写
 		return instance.getId();
 	}
@@ -76,6 +77,7 @@ public class JbpmCoreImp implements JbpmCore {
 	public void deleteProcessInstance(Long processInstance) {
 		JbpmContext context = getJbpmContext();
 		context.getGraphSession().deleteProcessInstance(processInstance);
+		context.close();
 	}
 
 	/**
@@ -171,6 +173,7 @@ public class JbpmCoreImp implements JbpmCore {
 				}
 			}
 		}
+		
 		return instance.getRootToken().getNode().getName();
 	}
 
@@ -232,7 +235,7 @@ public class JbpmCoreImp implements JbpmCore {
 	 * @return List中的元素是docId
 	 * @see com.oa.dao.impl.JbpmCore#seachMyTaskList(java.lang.String)
 	 */
-	public List seachMyTaskList(String actorID) {
+	public List<Integer> seachMyTaskList(String actorID) {
 		JbpmContext context = getJbpmContext();
 		List documents = new ArrayList();
 

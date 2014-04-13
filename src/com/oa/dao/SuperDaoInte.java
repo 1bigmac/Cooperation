@@ -24,9 +24,13 @@ public interface SuperDaoInte {
 	// login- user
 	public abstract Object check(String hql, Object[] condition);
 
-	public abstract List<Object> getAllObjects(Class clazz, String hql);
-
-	public abstract List<Object> getPage(int index, Class clazz, String hql);
+	public abstract List<Object> getAllObjects(Class clazz, String PartHql);
+	
+	public List<Object> getAllObjects(String CompleteHql);
+	
+	public List<Object> getpage(int index, String CompleteHql);
+	
+	public abstract List<Object> getPage(int index, Class clazz, String PartHql);
 
 	public abstract HibernateTemplate getHibernateTemplate();
 

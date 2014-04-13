@@ -435,8 +435,8 @@ function list(idstr){
 								<img id="xiaotu11" src="images/ico06.gif" width="8" height="12" />
 							</td>
 							<td width="91%">
-								<a href="WorkFlowAction!listWorkFlow" target="mainFrame"
-									class="left-font03" onClick="tupian('11');">流程列表</a>
+								<a href="DocumentAction!listMyDocument" target="mainFrame"
+									class="left-font03" onClick="tupian('11');">公文列表</a>
 							</td>
 						</tr>
 						<tr>

@@ -3,9 +3,17 @@ package com.oa.service.impl;
 import java.io.Serializable;
 import java.util.List;
 
-import com.oa.model.Document;
+import javax.annotation.Resource;
 
-public class DocumentServiceImp {
+import org.springframework.stereotype.Component;
+
+import com.oa.dao.DocumentDao;
+import com.oa.model.Document;
+import com.oa.service.DocumentService;
+@Component("documentService")
+public class DocumentServiceImp implements DocumentService {
+	
+	private DocumentDao documentDao;
 
 	/*
 	 *  添加公文信息
@@ -13,90 +21,91 @@ public class DocumentServiceImp {
 	 * @param workflowId 公文对应的流程ID
 	 * @param userId 公文的创建者ID
 	 */
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#addDocument(com.oa.model.Document, int, int)
+	 */
 	public void addDocument(Document document,int workflowId,int userId){
-		
+		documentDao.addDocument(document, workflowId, userId);
 	}
 	
-	/**
-	 * 更新公文信息
-	 * @param document
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#updateDocument(com.oa.model.Document, int, int)
 	 */
 	public void updateDocument(Document document,int workFLowId,int userId){
-		
+		documentDao.updateDocument(document, workFLowId, userId);
 	}
-	/**
-	 * 查找某个公文
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#getDocument(java.io.Serializable)
 	 */
-	public Document getDocument(Serializable id){
-		
-		return null;
+	public Document findDocument(Serializable id){
+		return documentDao.getDocument(id);
 	}
 	
-	/**
-	 * 查询(当前登录用户的)已审公文列表
-	 * @param userId 用户ID，取当前登录用户的ID
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#searchApprovedDocuments(int)
 	 */
 	public List<Document> searchApprovedDocuments(int userId){
-		return null;
+		String hql="select distinct h.document from ApproveHistory h where h.approver.id="+userId;
+		return documentDao.searchApprovedDocuments(userId);
+//		return null;
 	}
 	
-	/**
-	 * 查询待审（即等待当前登录用户审批的）公文列表
-	 * @param userId 当前登录用户的ID
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#searchApprovingDocuments(int)
 	 */
 	public List<Document> searchApprovingDocuments(int userId){
-		
-		return null;
+		return documentDao.searchApprovingDocuments(userId);
 	}
 	
-	/**
-	 *  删除公文信息
-	 * @param document
+	public List<Document> searchMyDocuments(int index, int userId){
+		return documentDao.searchMyDocumentPages(Document.class, userId, index);
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#deleteDocument(com.oa.model.Document)
 	 */
 	public void deleteDocument(Document document){
-		
+		documentDao.deleteDocument(document);
 	}
 	
 	/**
-	 * 
-	 *  * 搜索我的公文列表（即搜索由当前登录用户创建的公文列表）
-	 * @param clazz
-	 * @param hql
+	 * 查询下一个可选步骤列表（公文ID，用户标识）
+	 * @param documentId
+	 * @param userId
 	 * @return
 	 */
-	public List<Document> getAllDocuments(Class clazz, String hql){
-		return null;
-	}
-	
-	/**
-	 * 
-	 *  * 分页搜索我的公文列表（即搜索由当前登录用户创建的公文列表）
-	 * @param clazz
-	 * @param hql
-	 * @return
-	 */
-	public List<Document> getPageDocuments(int index, Class clazz, String hql){
-		return null;
-	}
-	
-	/**
-
 	public List searchNextStep(int documentId,int userId){
-		
-		return null;
+		return documentDao.searchNextStep(documentId, userId);
 	}
 	
-	/**
-	 * 提交到流程
-	 * @param userId 当前登录用户的ID
-	 * @param documentId 被提交的公文ID
-	 * @param transistionName 要提交到哪里去
+//	/* (non-Javadoc)
+//	 * @see com.oa.service.impl.DocumentService#getAllDocuments(java.lang.Class, java.lang.String)
+//	 */
+//	public List<Document> getAllDocuments(Class clazz, String hql){
+//		return documentDao.getAllDocuments(clazz, hql);
+//	}
+	
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#getPageDocuments(int, java.lang.Class, java.lang.String)
+	 */
+//	public List<Document> getPageDocuments(int index, Class clazz, String hql){
+//		return documentDao.getPageDocuments(index, clazz, hql);
+//	}
+//	
+	/* (non-Javadoc)
+	 * @see com.oa.service.impl.DocumentService#submitToWorkFlow(int, int, java.lang.String)
 	 */
 	public void submitToWorkFlow(int userId,int documentId,String transistionName){
-		
+		documentDao.submitToWorkFlow(userId, documentId, transistionName);
 	}
+
+	public DocumentDao getDocumentDao() {
+		return documentDao;
+	}
+
+	@Resource
+	public void setDocumentDao(DocumentDao documentDao) {
+		this.documentDao = documentDao;
+	}
+
 }
