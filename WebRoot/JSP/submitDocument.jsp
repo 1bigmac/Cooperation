@@ -54,7 +54,7 @@
 						<div class="MainDiv">
 						<table width="99%" border="0" cellpadding="0" cellspacing="0"
 				class="CContent">
-
+						
 							<tr>
 								<td align="right">添加流程定义</td>
 								<td align="center"><input name="uploadFiles" type="file"
@@ -71,9 +71,9 @@
 								<td align="center">&nbsp;</td>
 							</tr>
 						</table>
-						<div> 
+						<div > 
 							<table>
-								<tr align="right">
+								<tr >
 								<td> <input type="submit" value="提交" onclick=""></td>
 								<td> <input type="button" value="返回" onclick="window.history.go(-1);"></td>
 								</tr>

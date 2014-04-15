@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.stereotype.Component;
+
 import com.oa.dao.ApproveHistoryDao;
 import com.oa.model.ApproveHistory;
 import com.oa.service.ApproveHistoryService;
-
+@Component("approveHistoryService")
 public class ApproveHistoryServiceImp implements ApproveHistoryService {
 	private ApproveHistoryDao approveHistoryDao;
 	
@@ -18,12 +20,17 @@ public class ApproveHistoryServiceImp implements ApproveHistoryService {
 		approveHistoryDao.addApproveHistory(approveInfo, documentId, approverId, back);
 	}
 	
-	
 	/* (non-Javadoc)
 	 * @see com.oa.service.impl.ApproveHistoryService#searchApproveHistory(int)
 	 */
-	public List<ApproveHistory> searchApproveHistory(int documentId){
-		return approveHistoryDao.searchApproveHistory(documentId);
+	public List<ApproveHistory> searchPageApproveHistory(int index,int documentId){
+		String CompleteHql="from ApproveHistory h where h.document.id = "+documentId;
+		return approveHistoryDao.searchPageApproveHistory(index, CompleteHql);
+	}
+	
+	public List<ApproveHistory> searchAllApproveHistory(int documentId){
+		String CompleteHql="from ApproveHistory h where h.document.id = "+documentId;
+		return approveHistoryDao.searchAllApproveHistory(CompleteHql);
 	}
 
 

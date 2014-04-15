@@ -36,8 +36,11 @@ public class ApproveHistoryDaoImp implements ApproveHistoryDao {
 
 	}
 
-	public List<ApproveHistory> searchApproveHistory(int documentId) {
-		return objectToApproveHistory(superDao.select("from ApproveHistory h where h.document.id = "+documentId));
+	public List<ApproveHistory> searchPageApproveHistory(int index,String CompleteHql) {
+		return objectToApproveHistory(superDao.getpage(index, CompleteHql));
+	}
+	public List<ApproveHistory> searchAllApproveHistory(String CompleteHql){
+		return objectToApproveHistory(superDao.getAllObjects(CompleteHql));
 	}
 	private List<ApproveHistory> objectToApproveHistory(List<Object> lists){
 		List<ApproveHistory> histories=new ArrayList<ApproveHistory>();

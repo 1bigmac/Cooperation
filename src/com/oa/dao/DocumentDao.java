@@ -37,26 +37,32 @@ public interface DocumentDao {
 	 * @param userId 当前登录用户的ID
 	 * @return
 	 */
-	public abstract List<Document> searchApprovingDocuments(int userId);
+	public abstract List<Document> searchPageApprovingDocuments(String username,int index);
+	public List<Document> searchAllApprovingDocuments(String username);
 
 	/**
 	 *  删除公文信息
 	 * @param document
 	 */
 	public abstract void deleteDocument(Document document);
+	
+	public void deleteDocuments(Class clazz,String[] ids,String hql);
 
 	/**
 	 * 
-	 *  * 搜索我的公文列表（即搜索由当前登录用户创建的公文列表）
+	 * 搜索我的公文列表（即搜索由当前登录用户创建的公文列表）
 	 * @param clazz
 	 * @param hql
 	 * @return
 	 */
-	public List<Document> searchMyDocumentPages(Class clazz,int userId,int index);
+	public List<Document> searchAllMyDocument(Class clazz,int userId);
+	
+	public List<Document> searchPageDocument(Class clazz, int userId,int index);
 	
 	
+	// 查找用户创建的所有公文
 	public abstract List<Document> getAllDocuments(Class clazz, String hql);
-
+	
 	/**
 	 * 
 	 *  * 分页搜索我的公文列表（即搜索由当前登录用户创建的公文列表）
@@ -72,7 +78,16 @@ public interface DocumentDao {
 	 * @param userId 用户ID，取当前登录用户的ID
 	 * @return
 	 */
-	public abstract List<Document> searchApprovedDocuments(int userId);
+	public abstract List<Document> searchAllApprovedDocuments(String CompleteHql);
+	/**
+	 * 分页查询(当前登录用户的)已审公文列表
+	 * @param index
+	 * @param CompleteHql
+	 * @return
+	 */
+	public List<Document> searchPageApprovedDocument(int index,String CompleteHql);
+	
+	
 	
 	public List searchNextStep(int documentId,int userId);
 	

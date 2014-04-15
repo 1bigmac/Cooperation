@@ -36,6 +36,9 @@ public class UserAction extends ActionSupport {
 		}
 		return "login_failure";
 	}
+	public String loginView(){
+		return "login_failure";
+	}
 	
 	public String exits(){
 		Users exits=userService.exits(user.getAccount());

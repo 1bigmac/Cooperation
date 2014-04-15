@@ -3,6 +3,15 @@
 <struts>
 	<constant name="struts.objectFactory" value="spring" />
 	<package name="oa" extends="struts-default" namespace="/">
+		<interceptors>
+			<interceptor name="securityInterceptor" class="com.oa.extend.SecurityInterceptor">
+			</interceptor>
+			<interceptor-stack name="myDefaultStack">
+				<interceptor-ref name="securityInterceptor" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="myDefaultStack" />
 		<global-results>
 			<result name="operator_success">
 				/direct.jsp
@@ -10,20 +19,23 @@
 			<result name="operator_failure">
 				/JSP/operator_failure.jsp
 			</result>
+			<result name="login">
+			/login.jsp
+			</result>
 		</global-results>
-		<action name="UserAction" class="com.oa.action.UserAction" >
-			<result name="login_failure" >/login.jsp</result>
+		<action name="UserAction" class="com.oa.action.UserAction">
+			<result name="login_failure">/login.jsp</result>
 			<result name="login_success">/index.jsp</result>
 			<result name="modify">/JSP/yuangong.jsp</result>
 			<result name="accountModify">/JSP/accountModify.jsp</result>
 		</action>
-		<action name="OrganizationAction" class="com.oa.action.OrganizationAction" >
-			<result name="listOrg" >/JSP/organizationManage.jsp</result>
+		<action name="OrganizationAction" class="com.oa.action.OrganizationAction">
+			<result name="listOrg">/JSP/organizationManage.jsp</result>
 		</action>
 		<action name="PersonAction" class="com.oa.action.PersonAction">
 			<result name="input">/JSP/operator_failure.jsp</result>
-			<result name="success" >/JSP/listyuangong.jsp</result>
-			<result name="edit" >/JSP/yuangong.jsp</result>
+			<result name="success">/JSP/listyuangong.jsp</result>
+			<result name="edit">/JSP/yuangong.jsp</result>
 		</action>
 		<action name="ModuleAction" class="com.oa.action.ModuleAction">
 			<result name="moduleList">
@@ -35,6 +47,17 @@
 				/JSP/listWorkFlow.jsp
 			</result>
 		</action>
-		
+		<action name="DocumentAction" class="com.oa.action.DocumentAction">
+			<result name="documentList">
+				/JSP/listDocument.jsp
+			</result>
+			<result name="toAddDocumentView">
+				/JSP/choiceDocument.jsp
+			</result>
+			<result name="approveHistoryList">
+				/JSP/listApproveHistory.jsp
+			</result>
+		</action>
+
 	</package>
 </struts>

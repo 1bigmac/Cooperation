@@ -44,23 +44,32 @@ public class DocumentServiceImp implements DocumentService {
 	/* (non-Javadoc)
 	 * @see com.oa.service.impl.DocumentService#searchApprovedDocuments(int)
 	 */
-	public List<Document> searchApprovedDocuments(int userId){
+	public List<Document> searchAllApprovedDocuments(int userId){
 		String hql="select distinct h.document from ApproveHistory h where h.approver.id="+userId;
-		return documentDao.searchApprovedDocuments(userId);
+		return documentDao.searchAllApprovedDocuments(hql);
 //		return null;
+	}
+	public List<Document> searchPageApprovedDocuments(int userId,int index){
+		String CompleteHql="select distinct h.document from ApproveHistory h where h.approver.id="+userId;
+		return documentDao.searchPageApprovedDocument(index, CompleteHql);
 	}
 	
 	/* (non-Javadoc)
 	 * @see com.oa.service.impl.DocumentService#searchApprovingDocuments(int)
 	 */
-	public List<Document> searchApprovingDocuments(int userId){
-		return documentDao.searchApprovingDocuments(userId);
+	public List<Document> searchPageApprovingDocuments(String username,int index){
+		return documentDao.searchPageApprovingDocuments(username,index);
+	}
+	public List<Document> SearchAllApprovingDocuments(String username){
+		return documentDao.searchAllApprovingDocuments(username);
 	}
 	
-	public List<Document> searchMyDocuments(int index, int userId){
-		return documentDao.searchMyDocumentPages(Document.class, userId, index);
+	public List<Document> searchMyDocumentsPage(int index, int userId){
+		return documentDao.searchPageDocument(Document.class, userId, index);
 	}
-	
+	public List<Document> searchAllMyDocument(int userId){
+		return documentDao.searchAllMyDocument(Document.class, userId);
+	}
 	/* (non-Javadoc)
 	 * @see com.oa.service.impl.DocumentService#deleteDocument(com.oa.model.Document)
 	 */
@@ -68,6 +77,9 @@ public class DocumentServiceImp implements DocumentService {
 		documentDao.deleteDocument(document);
 	}
 	
+	public void deleteDocuments(String []ids){
+		documentDao.deleteDocuments(Document.class, ids, "delete from Document d where d.id ");
+	}
 	/**
 	 * 查询下一个可选步骤列表（公文ID，用户标识）
 	 * @param documentId

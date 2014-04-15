@@ -35,15 +35,17 @@ public interface DocumentService {
 	 * @param userId 用户ID，取当前登录用户的ID
 	 * @return
 	 */
-	public abstract List<Document> searchApprovedDocuments(int userId);
-
+	public abstract List<Document> searchAllApprovedDocuments(int userId);
+	
+	public List<Document> searchPageApprovedDocuments(int userId,int index);
 	/**
 	 * 查询待审（即等待当前登录用户审批的）公文列表
 	 * @param userId 当前登录用户的ID
 	 * @return
 	 */
-	public abstract List<Document> searchApprovingDocuments(int userId);
+	public abstract List<Document> searchPageApprovingDocuments(String username,int index);
 	
+	public List<Document> SearchAllApprovingDocuments(String username);
 	
 	/**
 	 * 
@@ -53,12 +55,16 @@ public interface DocumentService {
 	 * @return
 	 */
 
-	public List<Document> searchMyDocuments(int index,int userId);
+	public List<Document> searchMyDocumentsPage(int index,int userId);
+	
+	public List<Document> searchAllMyDocument( int userId);
 	/**
 	 *  删除公文信息
 	 * @param document
 	 */
 	public abstract void deleteDocument(Document document);
+	
+	public void deleteDocuments(String []ids);
 
 	/**
 	 * 

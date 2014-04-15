@@ -21,6 +21,7 @@ public interface ApproveHistoryService {
 	 * @param documentId 公文的ID
 	 * @return
 	 */
-	public abstract List<ApproveHistory> searchApproveHistory(int documentId);
+	public abstract List<ApproveHistory> searchPageApproveHistory(int index,int documentId);
 
+	public List<ApproveHistory> searchAllApproveHistory(int documentId);
 }

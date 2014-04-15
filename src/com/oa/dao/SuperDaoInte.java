@@ -17,8 +17,6 @@ public interface SuperDaoInte {
 
 	public abstract Object select(Class clazz, Serializable id);
 
-
-
 	public abstract List<Object> find(String hql);
 
 	// login- user
@@ -40,6 +38,8 @@ public interface SuperDaoInte {
 	
 
 	public void deleteList(Class clazz,Object []ids,String hql);
-	
+	public List<Object> getChoice(List condition, String hql, String sign);
+	public List<Object> getPageChoice(List condition, String hql, String sign,
+			int index);
 
 }

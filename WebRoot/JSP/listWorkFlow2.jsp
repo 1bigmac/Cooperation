@@ -10,7 +10,7 @@
 <html>
 <head>
 <base href="<%=basePath%>">
-
+<base target="_self" />
 <title>My JSP 'WorkFlow.jsp' starting page</title>
 
 <meta http-equiv="pragma" content="no-cache">
@@ -79,8 +79,14 @@ html {
 				.open(
 						"gaojisousuo.jsp",
 						"",
-						"depended=0,alwaysRaised=1,width=800,height=510,location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0");
+						"depended=0,alwaysRaised=1,width=800,height=510,location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0,");
 	}
+		function showDialogForEdit(id){
+			window.showModalDialog('EmployeeAction!updateEmployerDialog?employee.id='+id,'','dialogWidth=450px;dialogHeight=350px;');
+	}
+	function sou1(url) {
+			 	window.showModalDialog(url,'','dialogWidth=450px;dialogHeight=350px;');
+	 }
 	function selectAll() {
 		var obj = document.fom.elements;
 		for ( var i = 0; i < obj.length; i++) {
@@ -103,12 +109,12 @@ html {
 	}
 
 	function link() {
-		document.getElementById("fom").action = "DocumentAction!toAddDocumentView";
+		document.getElementById("fom").action = "JSP/yuangong.jsp";
 		document.getElementById("fom").submit();
 	}
 
 	function deleteChose() {
-		document.getElementById("fom").action = "DocumentAction!deleteDocument";
+		document.getElementById("fom").action = "WorkFlowAction!deleteWorkFlow";
 		document.getElementById("fom").submit();
 	}
 </SCRIPT>
@@ -119,7 +125,7 @@ html {
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td height="30">
-				<form name="fom" id="fom" method="post" action="">
+				<form name="fom" id="fom" method="post" action="" target="mainFrame">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td height="62" background="images/nav04.gif">
@@ -155,72 +161,63 @@ html {
 										<td height="20"><span class="newfont07">选择：<a
 												href="#" class="right-font08" onclick="selectAll();">全选</a>-<a
 												href="#" class="right-font08" onclick="unselectAll();">反选</a>
-										</span> <input name="Submit" type="button" class="right-button08"
-											value="删除所选公文信息" onclick="deleteChose();" /> <input
-											name="Submit" type="button" class="right-button08"
-											value="添加公文信息" onclick="link();" /> 
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
- 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-  											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-  											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
- 
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-											<input name="Submit" type="button" class="right-button08"
-											value="我的公文" onclick="javascript:window.location.href='DocumentAction!listMyDocument';" /> <input name="Submit"
-											type="button" class="right-button08" value="待审公文"
-											onclick="javascript:window.location.href='DocumentAction!ApprovingDocumentList;'" />
-											 <input name="Submit" type="button" class="right-button08" value="已审核公文" onclick="javascript:window.location.href='DocumentAction!ApprovedDocumentList'" /> </td>
+										</span> 
+										<input name="Submit" type="button" class="right-button08" value="删除所选流程信息" onclick="deleteChose();" /> 
+										<input	name="Submit" type="button" class="right-button08" value="添加流程信息" onclick="window.location.href='JSP/submitDocument.jsp'" />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+										</td>
 									</tr>
 									<tr>
 										<td height="40" class="font42">
 											<table width="100%" border="0" cellpadding="4"
 												cellspacing="1" bgcolor="#464646" class="newfont03">
-
 												<tr>
 													<td height="20" colspan="15" align="center"
-														bgcolor="#EEEEEE" class="tablestyle_title"> 
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 公文详细列表 &nbsp;</td>
+														bgcolor="#EEEEEE" class="tablestyle_title">
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														流程详细列表 &nbsp;</td>
 												</tr>
 												<tr>
 													<td width="6%" align="center" bgcolor="#EEEEEE">选择</td>
 													<td width="9%" height="20" align="center" bgcolor="#EEEEEE">
-														公文编号</td>
-													<td width="10%" align="center" bgcolor="#EEEEEE">公文标题</td>
-													<td width="10%" align="center" bgcolor="#EEEEEE">创建时间</td>
-													<td width="9%" align="center" bgcolor="#EEEEEE">公文状态</td>
-
-													<td width="10%" align="center" bgcolor="#EEEEEE">流程名称</td>
-													<td width="20%" align="center" bgcolor="#EEEEEE">附件</td>
-													<td width="10%" align="center" bgcolor="#EEEEEE">审批历史
-													</td>
-
-													<td width="25%" align="center" bgcolor="#EEEEEE">操作</td>
+														流程编号</td>
+													<td width="18%" align="center" bgcolor="#EEEEEE">流程名称</td>
+													<td width="18%" align="center" bgcolor="#EEEEEE">流程定义文件</td>
+													<td width="15%" align="center" bgcolor="#EEEEEE">流程图片信息</td>
+													<td width="10%" align="center" bgcolor="#EEEEEE">操作</td>
 												</tr>
-												<s:iterator var="document" value="#request.myDocumentList">
+												<s:iterator var="workflow" value="#request.workFlowLists">
 													<tr>
 														<td bgcolor="#FFFFFF"><input type="checkbox"
-															name="delid" value="${document.id }" /></td>
+															name="delid" value="${workflow.id }" /></td>
 														<td height="20" bgcolor="#FFFFFF"><a
-															href="DocumentAction!edit?person.id=${document.id }">${document.id}</a></td>
+															href="WorkFlowAction!edit?workFlow.id=${workflow.id }">${workflow.id
+																}</a></td>
 														<td bgcolor="#FFFFFF"><a
-															href="DocumentAction!edit?person.id=${document.id }">${document.title}</a></td>
-														<td bgcolor="#FFFFFF">${document.createTime }</td>
-														<td bgcolor="#FFFFFF">${document.status }</td>
-														<td height="20" bgcolor="#FFFFFF">${document.workFlow.name}</td>
-														
-														<s:set var="num" value="#document.doc.lastIndexOf('\\\\')" />
-														<s:set var="doc"	value="#document.doc.substring((#num+1))" />
-														<td height="20" bgcolor="#FFFFFF">${doc}</td>
-														<td height="20" bgcolor="#FFFFFF"><a href="DocumentAction!approveHistoryList?document.id=${document.id }">查看</a>
+															href="WorkFlowAction!edit?workFlow.id=${workflow.id}">${workflow.name}
+																|<s:property
+																	value="#workflow.processDefinition.lastIndexOf('\\\\')" /></a>
+														</td>
+														<s:set var="num"
+															value="#workflow.processDefinition.lastIndexOf('\\\\')" />
+														<td bgcolor="#FFFFFF">
+														<s:set var="process"	value="#workflow.processDefinition.substring((#num+1))" />
+														<a href="javascript:window.showModalDialog('upload/${process}','','dialogWidth=800px;dialogHeight=500px;location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0;');">
+														${process }</a>
+														</td>
+														<s:set var="number"
+															value="#workflow.processDefinition.lastIndexOf('\\\\')" />
+														<td bgcolor="#FFFFFF">
+														<s:set var="image"	value="#workflow.processImage.substring((#num+1))" />
+														<a href="javascript:window.showModalDialog('upload/${image}','','dialogWidth=800px;dialogHeight=500px;location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0;');">
+															${image }
+														</a>
 														</td>
 
-														<td bgcolor="#FFFFFF"><a
-															href="DocumentAction!edit?person.id=${document.id }">编辑</a>
-															&nbsp;|&nbsp;
-															<a href="yuangongsalary.html">提交(审批)</a>
-															&nbsp;|&nbsp;
-															 <a	href="DocumentAction!deleteDocument?delid=${document.id }">删除</a></td>
+														<td bgcolor="#FFFFFF">
+															 <a	href="JSP/submitDocument.jsp?id=${workflow.id}"
+															>编辑(修改)</a>
+															<a href="WorkFlowAction!deleteWorkFlow?delid=${workflow.id }">删除</a></td>
 													</tr>
 												</s:iterator>
 											</table></td>
@@ -234,8 +231,7 @@ html {
 
 	<table width="95%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
-		<td height="33">
-		<s:set var="pageCount"
+		<td height="33"><s:set var="pageCount"
 				value="(#request.totalSize-1)/10+1" />
 			<table width="100%" border="0" align="center" cellpadding="0"
 				cellspacing="0" class="right-font08">
@@ -244,17 +240,16 @@ html {
 						页 | 第 <span class="right-text09">${requestScope.currentIndex}</span>
 						页</td>
 					<td width="49%" align="right">[ <a
-						href="PersonActon!listMyDocument?index=1" target="mainFrame"
+						href="WorkFlowActon!listWorkFlow?index=1" target="mainFrame"
 						class="right-font08">首页</a> | <a
-						href="DocumentAction!listMyDocument?<s:if test='(#request.currentIndex-1)< 0'>index=1</s:if><s:else >index=${requestScope.currentIndex-1 }</s:else>"
+						href="WorkFlowAction!listWorkFlow?<s:if test='(#request.currentIndex-1)< 0'>index=1</s:if><s:else >index=${requestScope.currentIndex-1 }</s:else>"
 						class="right-font08">上一页</a> | <s:if
 							test='(#request.currentIndex+1)<=#pageCount'>
 							<a
-								href="DocumentAction!listMyDocument?index=${requestScope.currentIndex+1 }"
+								href="WorkFlowAction!listWorkFlow?index=${requestScope.currentIndex+1 }"
 								class="right-font08">下一页</a>
-						</s:if>
-						<s:else></s:else> | <a
-						href="DocumentAction!listMyDocument?index=${pageCount }"
+						</s:if> <s:else></s:else> | <a
+						href="WorkFlowAction!listWorkFlow?index=${pageCount }"
 						class="right-font08">末页</a>] 转至：</td>
 					<td width="1%">
 						<table width="20" border="0" cellspacing="0" cellpadding="0">
@@ -269,42 +264,6 @@ html {
 			</table></td>
 	</table>
 	<br>
-	<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
-		<tr></tr>
-		<tr align="center">
-			<td class="TablePanel">添加流程</td>
-		</tr>
-		<TR>
-			<TD width="100%">
-				<fieldset style="height:100%;">
-					<legend>流程信息</legend>
-					<form action="" method="post" enctype="multipart/form-data"
-						name="form" target="sypost">
-						<div class="MainDiv">
-						<table width="99%" border="0" cellpadding="0" cellspacing="0"
-				class="CContent">
-
-							<tr>
-								<td align="right">添加流程定义</td>
-								<td align="center"><input name="xxx" type="file"
-									 />
-								</td>
-								<td align="center">&nbsp;</td>
-							</tr>
-							<tr>
-								<td align="right">添加流程图片</td>
-								<td align="center"><input name="xxx" type="file"
-									/>
-								</td>
-								<td align="center">&nbsp;</td>
-							</tr>
-						</table>
-						</div>
-					</form>
-					<br />
-				</fieldset></TD>
-		</TR>
-	</TABLE>
 
 </body>
 </html>

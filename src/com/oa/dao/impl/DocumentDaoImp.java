@@ -38,7 +38,10 @@ public class DocumentDaoImp implements DocumentDao {
 		document.setStatus(Document.New);
 		document.setCreateTime(new Date());
 		superDao.add(document);
-
+	}
+	
+	public void deleteDocuments(Class clazz,String[] ids,String hql){
+		superDao.deleteList(clazz, ids, hql);
 	}
 
 	public void updateDocument(Document document, int workFLowId, int userId) {
@@ -51,23 +54,41 @@ public class DocumentDaoImp implements DocumentDao {
 	}
 
 	// 查找正在等待审批的公文
-	public List<Document> searchApprovingDocuments(int userId) {
-		Users users = (Users) superDao.select(Users.class, userId);
-		String temp = users.getPersonid().getName();
-		List<Integer> docs = jbpmCore.seachMyTaskList(temp);
+	public List<Document> searchPageApprovingDocuments(String username ,int index) {
+//		Users users = (Users) superDao.select(Users.class, userId);
+//		String temp = users.getPersonid().getName();
+		List<Integer> docs = jbpmCore.seachMyTaskList(username);
+		System.out.println(docs.size()+"DocumentDaoImp  sdfsaf ");
 		if (docs.size() == 0 || docs == null) {
 			return null;
 		}
+	
+		String hql = "from Document d where d.id in (:ids)";
+		String sign = "ids";
+//		return objectToDocuments(superDao.getChoice(docs, hql, sign));
+		return objectToDocuments(superDao.getPageChoice(docs, hql, sign, index));
+	}
+	public List<Document> searchAllApprovingDocuments(String username){
+		List<Integer> docs = jbpmCore.seachMyTaskList(username);
+		if (docs.size() == 0 || docs == null) {
+			return null;
+		}
+		System.out.println(docs.size()+"DocumentDaoImp  sdfsaf ");
 		String hql = "from Document d where d.id in (:ids)";
 		String sign = "ids";
 		return objectToDocuments(superDao.getChoice(docs, hql, sign));
 	}
 
-	// 查找用户已审批过的公文
-		public List<Document> searchApprovedDocuments(int userId) {
-			return objectToDocuments(superDao
-					.select("select distinct h.document from ApproveHistory h where h.approver.id="
-							+ userId));
+	// 查找用户已审批过全部的公文
+		public List<Document> searchAllApprovedDocuments(String CompleteHql) {
+//			return objectToDocuments(superDao
+//					.select("select distinct h.document from ApproveHistory h where h.approver.id="
+//							+ userId));
+			return objectToDocuments(superDao.getAllObjects(CompleteHql));
+		}
+		// 分页显示审批过的公文
+		public List<Document> searchPageApprovedDocument(int index,String CompleteHql){
+			return objectToDocuments(superDao.getpage(index, CompleteHql));
 		}
 
 	private List<Document> objectToDocuments(List<Object> lists) {
@@ -82,9 +103,16 @@ public class DocumentDaoImp implements DocumentDao {
 		superDao.delete(document);
 	}
 
-	public List<Document> searchMyDocumentPages(Class clazz, int userId,int index) {
-		String hql = " and s.users.id =" + userId;
-		return getPageDocuments(index, clazz, hql);
+	/**
+	 * 我的所有公文
+	 */
+	public List<Document> searchAllMyDocument(Class clazz, int userId) {
+		String hql = "from Document d where d.users.id =" + userId;
+		return objectToDocuments(superDao.getAllObjects(hql));
+	}
+	public List<Document> searchPageDocument(Class clazz, int userId,int index){
+		String hql = "from Document d where d.users.id =" + userId;
+		return objectToDocuments(superDao.getpage(index, hql));
 	}
 
 	// 查找用户创建的所有公文
@@ -96,7 +124,6 @@ public class DocumentDaoImp implements DocumentDao {
 	public List<Document> getPageDocuments(int index, Class clazz, String hql) {
 		return objectToDocuments(superDao.getPage(index, clazz, hql));
 	}
-
 	
 	/**
 	 * 

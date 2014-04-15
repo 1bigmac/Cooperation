@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * 公文
@@ -35,7 +37,7 @@ public class Document implements Serializable{
 	/**
 	 * 文档内容
 	 */
-	private byte []Content;
+	private String doc;
 	/**
 	 * 文档描述
 	 */
@@ -74,18 +76,14 @@ public class Document implements Serializable{
 		this.title = title;
 	}
 
-	public byte[] getContent() {
-		return Content;
-	}
-	public void setContent(byte[] content) {
-		Content = content;
-	}
+
 	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String description) {
 		this.description = description;
 	}
+	@Temporal(TemporalType.DATE)
 	public Date getCreateTime() {
 		return createTime;
 	}
@@ -117,7 +115,7 @@ public class Document implements Serializable{
 	@Override
 	public String toString() {
 		return "Document [id=" + id + ", title=" + title + ", Content="
-				+ Arrays.toString(Content) + ", description=" + description
+				 + ", description=" + description
 				+ ", createTime=" + createTime + ", status=" + status + "]";
 	}
 	public Long getProcessInstanceId() {
@@ -125,5 +123,11 @@ public class Document implements Serializable{
 	}
 	public void setProcessInstanceId(Long processInstanceId) {
 		this.processInstanceId = processInstanceId;
+	}
+	public String getDoc() {
+		return doc;
+	}
+	public void setDoc(String doc) {
+		this.doc = doc;
 	}
 }

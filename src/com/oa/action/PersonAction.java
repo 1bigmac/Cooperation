@@ -36,9 +36,9 @@ public class PersonAction extends ActionSupport {
 			autoConvertToAge();
 			Serializable flag = personService.addPerson(person);
 			returns="JSP/yuangong.jsp";
+			System.out.println(person.toString()+" personAction  test");
 			return flag == null ? "operator_failure" : "operator_success";
 		} else {
-		
 			returns="PersonAction!personList";
 			System.err.println(returns);
 			autoConvertToAge();

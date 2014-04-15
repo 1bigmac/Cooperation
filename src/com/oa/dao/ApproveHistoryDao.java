@@ -22,7 +22,8 @@ public interface ApproveHistoryDao {
 	 * @param documentId 公文的ID
 	 * @return
 	 */
-	public abstract List<ApproveHistory> searchApproveHistory(int documentId);
+	public List<ApproveHistory> searchPageApproveHistory(int index,String CompleteHql);
 
+	public List<ApproveHistory> searchAllApproveHistory(String CompleteHql);
 	
 }

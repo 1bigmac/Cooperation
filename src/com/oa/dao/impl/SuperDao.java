@@ -48,6 +48,17 @@ public class SuperDao implements SuperDaoInte {
 		return list;
 	}
 
+	public List<Object> getPageChoice(List condition, String hql, String sign,
+			int index) {
+		List<Object> list = hibernateTemplate.getSessionFactory()
+				.getCurrentSession().createQuery(hql)
+				.setParameterList(sign, condition)
+				.setFirstResult((index - 1) * 10)
+				.setMaxResults(10)
+				.list();
+		return list;
+	}
+
 	// login- user
 	public Object check(String hql, Object[] condition) {
 		List list = hibernateTemplate.find(hql, condition);

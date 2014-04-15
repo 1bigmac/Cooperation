@@ -1,7 +1,9 @@
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class test {
@@ -22,7 +24,11 @@ public class test {
 		System.out.println(file.toString());
 		System.out.println(file.getAbsolutePath());
 	}
+	public static void test(){
+		List it =new ArrayList();
+		System.out.println(it.size());
+	}
 	public static void main(String[] args) {
-
+		test();
 	}
 }
