@@ -4,9 +4,11 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.xml.registry.infomodel.User;
 
 import org.apache.struts2.ServletActionContext;
 
+import com.oa.action.UserAction;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionInvocation;
 import com.opensymphony.xwork2.interceptor.AbstractInterceptor;
@@ -23,11 +25,17 @@ public class SecurityInterceptor implements Interceptor {
 		System.out.println("heare mad dan ");
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		HttpServletRequest request=ServletActionContext.getRequest();
-		System.err.println(request.getRequestURI());
-		if (session.getAttribute("admin") == null) {
+		System.err.println(request.getRequestURL());
+		String machter="UserAction!login";
+		String clazz=invocation.getAction().getClass().getName();
+		System.out.println(clazz);
+		if(UserAction.class.getName().equals(clazz)){
+			return invocation.invoke();
+		}
+		if (session.getAttribute("admin") == null ){
 			System.err.println("not exists");
 			return Action.LOGIN;
-		} else {
+		}else {
 			System.out.println("ok next");
 			return invocation.invoke();
 		}
