@@ -10,6 +10,8 @@ public interface WorkFlowDao {
 
 	public Serializable addWorkFlow(String processDefinition,
 			String processImage) throws FileNotFoundException;
+	
+//	public void addOrUpdateWorkflow(String processDef,String processImage) throws FileNotFoundException;
 
 	public abstract void updateWorkFlow(String processDefinition,
 			String processImage, int id);

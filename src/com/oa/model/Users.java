@@ -36,7 +36,7 @@ public class Users implements Serializable {
 	 * user 表 账号 由程序生成 6位 
 	 * 
 	 */
-	private Integer account;
+	private String account;
 	
 	/**
 	 * user 表 用户 账号 密码
@@ -75,11 +75,11 @@ public class Users implements Serializable {
 	}
 
 	@Column(unique=true)
-	public Integer getAccount() {
+	public String getAccount() {
 		return account;
 	}
 
-	public void setAccount(Integer account) {
+	public void setAccount(String account) {
 		this.account = account;
 	}
 
@@ -107,7 +107,7 @@ public class Users implements Serializable {
 		this.expireTime = expireTime;
 	}
 
-	@ManyToOne(cascade={CascadeType.ALL})
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="personId",referencedColumnName="id")
 	public Person getPersonid() {
 		return personid;

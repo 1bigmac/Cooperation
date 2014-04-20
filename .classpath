@@ -64,5 +64,6 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jbpm-jpdl.jar" sourcepath="Z:/soft/jbpm/spring-modules-0.8/sources/spring-modules-jbpm31-src.zip"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring-modules-jbpm31.jar" sourcepath="Z:/soft/jbpm/spring-modules-0.8/sources/spring-modules-jbpm31-src.zip"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/json-lib.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

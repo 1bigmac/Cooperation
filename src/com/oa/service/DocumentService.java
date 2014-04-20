@@ -58,6 +58,16 @@ public interface DocumentService {
 	public List<Document> searchMyDocumentsPage(int index,int userId);
 	
 	public List<Document> searchAllMyDocument( int userId);
+	
+	/**
+	 * 
+	 * 归档文档
+	 * @param index
+	 * @param userId
+	 * @return
+	 */
+	public List<Document> serachAllFinishDocuments( int userId);
+	public List<Document> serachPageFinishDocuments(int index, int userId);
 	/**
 	 *  删除公文信息
 	 * @param document
@@ -93,7 +103,7 @@ public interface DocumentService {
 	 * @param userId
 	 * @return
 	 */
-	public List searchNextStep(int documentId,int userId);
+	public List searchNextStep(int documentId,String userId);
 	
 	/**
 	 * 提交到流程

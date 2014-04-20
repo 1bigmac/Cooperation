@@ -63,12 +63,22 @@ public class DocumentServiceImp implements DocumentService {
 	public List<Document> SearchAllApprovingDocuments(String username){
 		return documentDao.searchAllApprovingDocuments(username);
 	}
-	
+	/*
+	 * 
+	 * 归档处理(non-Javadoc)
+	 * @see com.oa.service.DocumentService#serachPageFinishDocuments(int, int)
+	 */
+	public List<Document> serachPageFinishDocuments(int index, int userId){
+		return documentDao.searchPageDocument(Document.class, userId, index, true);
+	}
+	public List<Document> serachAllFinishDocuments(int userId){
+		return documentDao.searchAllMyDocument(Document.class, userId, true);
+	}
 	public List<Document> searchMyDocumentsPage(int index, int userId){
-		return documentDao.searchPageDocument(Document.class, userId, index);
+		return documentDao.searchPageDocument(Document.class, userId, index,false);
 	}
 	public List<Document> searchAllMyDocument(int userId){
-		return documentDao.searchAllMyDocument(Document.class, userId);
+		return documentDao.searchAllMyDocument(Document.class, userId,false);
 	}
 	/* (non-Javadoc)
 	 * @see com.oa.service.impl.DocumentService#deleteDocument(com.oa.model.Document)
@@ -86,7 +96,7 @@ public class DocumentServiceImp implements DocumentService {
 	 * @param userId
 	 * @return
 	 */
-	public List searchNextStep(int documentId,int userId){
+	public List searchNextStep(int documentId,String userId){
 		return documentDao.searchNextStep(documentId, userId);
 	}
 	
@@ -119,5 +129,6 @@ public class DocumentServiceImp implements DocumentService {
 	public void setDocumentDao(DocumentDao documentDao) {
 		this.documentDao = documentDao;
 	}
+
 
 }

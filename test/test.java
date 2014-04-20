@@ -1,10 +1,15 @@
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+
+
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.junit.Test;
 
 public class test {
 
@@ -28,7 +33,20 @@ public class test {
 		List it =new ArrayList();
 		System.out.println(it.size());
 	}
+	@Test
+	public void testJson() throws JSONException{
+		JSONArray array=new JSONArray();
+		JSONObject object=new JSONObject();
+		object.put("id", 11);
+		object.put("title", "metting");
+		object.put("start", System.currentTimeMillis());
+		object.put("end", System.currentTimeMillis()+10000);
+		object.put("backgroundColor", "#102222");
+		array.put(object);
+		System.err.println(array.toString());
+	}
 	public static void main(String[] args) {
-		test();
+//		test();
+		System.out.println(new Date());
 	}
 }

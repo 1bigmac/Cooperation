@@ -10,6 +10,8 @@ public interface WorkFlowService {
 
 	public abstract Serializable add(String processDefinition,
 			String processImage);
+	
+//	public  void addOrUpdateWorkflow(String processDefinition,String processImage);
 
 	public abstract void updateWorkFlow(String processDefinition, String processImage,int id);
 
@@ -21,7 +23,7 @@ public interface WorkFlowService {
 
 	public abstract List<WorkFlow> getPageWorkFlows(int index,String hql);
 	
-	public void deletePersons(String[] ids);
+	public void deleteWorkFLow(String[] ids);
 	
 	public WorkFlow getWorkFlow(Serializable id);
 

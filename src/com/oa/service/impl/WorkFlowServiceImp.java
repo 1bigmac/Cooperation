@@ -9,8 +9,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 
-import com.oa.dao.JbpmCore;
 import com.oa.dao.WorkFlowDao;
+import com.oa.extend.JbpmCore;
 import com.oa.model.WorkFlow;
 import com.oa.service.WorkFlowService;
 
@@ -35,6 +35,13 @@ public class WorkFlowServiceImp implements WorkFlowService {
 		}
 		return null;
 	}
+//	public  void addOrUpdateWorkflow(String processDefinition,String processImage){
+//		try {
+//			workFlowDao.addOrUpdateWorkflow(processDefinition, processImage);
+//		} catch (FileNotFoundException e) {
+//			e.printStackTrace();
+//		}
+//	}
 	/* (non-Javadoc)
 	 * @see com.oa.service.impl.WorkFlowService#updateWorkFlow(com.oa.model.WorkFlow)
 	 */
@@ -48,10 +55,10 @@ public class WorkFlowServiceImp implements WorkFlowService {
 		workFlowDao.deleteWorkFlow(workFlow);
 	}
 	
-	public void deletePersons(String[] ids){
+	public void deleteWorkFLow(String[] ids){
 		for(int i=0 ;i <ids.length; i++){
 			WorkFlow temp=workFlowDao.findWorkFlow(WorkFlow.class, Integer.parseInt(ids[i]));
-			jbpmCore.deleteProcessDefinition(temp.getProcessDefinition());
+			jbpmCore.delProcessDefinition(temp.getProcessDefinition());
 			workFlowDao.deleteWorkFlow(temp);
 		}
 //		workFlowDao.deletePersons(WorkFlow.class, ids, hql);

@@ -57,7 +57,12 @@
 			<result name="approveHistoryList">
 				/JSP/listApproveHistory.jsp
 			</result>
+			<result name="submitToNextOne">
+				/JSP/test.jsp
+			</result>
 		</action>
-
+		<action name="EventAction" class="com.oa.action.ChartAction">
+			<result name="aa">/index.jsp</result>
+		</action>
 	</package>
 </struts>

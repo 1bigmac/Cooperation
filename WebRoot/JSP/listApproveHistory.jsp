@@ -188,24 +188,24 @@ html {
 												</tr>
 												<s:iterator var="approveHistory" value="#request.approveHistoryList">
 													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox" name="delid" value="${approveHistory.id }" /></td>
-														<td height="20" bgcolor="#FFFFFF">${approveHistory.id}</td>
-														<td bgcolor="#FFFFFF">
+														<td bgcolor="#FFFFFF" align="center"><input type="checkbox" name="delid" value="${approveHistory.id }" /></td>
+														<td height="20" bgcolor="#FFFFFF" align="center">${approveHistory.id}</td>
+														<td bgcolor="#FFFFFF" align="center">
 															${approveHistory.approveTime} 
 														</td>
-														<td bgcolor="#FFFFFF">
+														<td bgcolor="#FFFFFF" align="center">
 															${approveHistory.comments }
 														</td>
-														<td bgcolor="#FFFFFF">
-															${approveHistory.approver.personid.name }
+														<s:set var="num" value="#approveHistory.document.doc.lastIndexOf('\\\\')" />
+														<s:set var="doc" value="#approveHistory.document.doc.substring((#num+1))" />
+														<td bgcolor="#FFFFFF" align="center">
+															${doc }
 														</td>
-														<td bgcolor="#FFFFFF">
-															${approveHistory.document. }
-														</td>
-														<td bgcolor="#FFFFFF">
+														<td bgcolor="#FFFFFF" align="center">
 															 <a	href="JSP/submitDocument.jsp?id=${approveHistory.id}"
 															>编辑(修改)</a>
-															<a href="DocumentAction!deleteWorkFlow?delid=${approveHistory.id }">删除</a></td>
+															<a href="DocumentAction!deleteWorkFlow?delid=${approveHistory.id }">删除</a>
+														</td>
 													</tr>
 												</s:iterator>
 											</table></td>

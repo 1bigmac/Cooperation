@@ -188,33 +188,33 @@ html {
 												</tr>
 												<s:iterator var="workflow" value="#request.workFlowLists">
 													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox"
+														<td bgcolor="#FFFFFF"  align="center"><input type="checkbox"
 															name="delid" value="${workflow.id }" /></td>
-														<td height="20" bgcolor="#FFFFFF"><a
+														<td height="20" bgcolor="#FFFFFF"  align="center"><a
 															href="WorkFlowAction!edit?workFlow.id=${workflow.id }">${workflow.id
 																}</a></td>
-														<td bgcolor="#FFFFFF"><a
+														<td bgcolor="#FFFFFF"  align="center"><a
 															href="WorkFlowAction!edit?workFlow.id=${workflow.id}">${workflow.name}
 																|<s:property
 																	value="#workflow.processDefinition.lastIndexOf('\\\\')" /></a>
 														</td>
 														<s:set var="num"
 															value="#workflow.processDefinition.lastIndexOf('\\\\')" />
-														<td bgcolor="#FFFFFF">
+														<td bgcolor="#FFFFFF"  align="center">
 														<s:set var="process"	value="#workflow.processDefinition.substring((#num+1))" />
 														<a href="javascript:window.showModalDialog('upload/${process}','','dialogWidth=800px;dialogHeight=500px;location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0;');">
 														${process }</a>
 														</td>
 														<s:set var="number"
 															value="#workflow.processDefinition.lastIndexOf('\\\\')" />
-														<td bgcolor="#FFFFFF">
+														<td bgcolor="#FFFFFF"  align="center">
 														<s:set var="image"	value="#workflow.processImage.substring((#num+1))" />
 														<a href="javascript:window.showModalDialog('upload/${image}','','dialogWidth=800px;dialogHeight=500px;location=0,menubar=0,resizable=0,scrollbars=0,status=0,toolbar=0;');">
 															${image }
 														</a>
 														</td>
 
-														<td bgcolor="#FFFFFF">
+														<td bgcolor="#FFFFFF"  align="center">
 															 <a	href="JSP/submitDocument.jsp?id=${workflow.id}"
 															>编辑(修改)</a>
 															<a href="WorkFlowAction!deleteWorkFlow?delid=${workflow.id }">删除</a></td>

@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Component;
 
 import com.oa.dao.ApproveHistoryDao;
-import com.oa.dao.JbpmCore;
+import com.oa.extend.JbpmCore;
 import com.oa.model.ApproveHistory;
 import com.oa.model.Document;
 import com.oa.model.Users;
@@ -28,13 +28,13 @@ public class ApproveHistoryDaoImp implements ApproveHistoryDao {
 		superDao.add(approveInfo);
 		if (back) {
 			Object[] os = jbpmCore.backStep(document.getProcessInstanceId(),
-					users.getPersonid().getName());
+					users.getAccount());
 			document.setStatus((String)os[0]);
 			document.setProcessInstanceId((Long)os[1]);
 			superDao.update(document);
 		}
-
 	}
+
 
 	public List<ApproveHistory> searchPageApproveHistory(int index,String CompleteHql) {
 		return objectToApproveHistory(superDao.getpage(index, CompleteHql));
@@ -57,6 +57,15 @@ public class ApproveHistoryDaoImp implements ApproveHistoryDao {
 	@Resource
 	public void setSuperDao(SuperDao superDao) {
 		this.superDao = superDao;
+	}
+
+	public JbpmCore getJbpmCore() {
+		return jbpmCore;
+	}
+
+	@Resource
+	public void setJbpmCore(JbpmCore jbpmCore) {
+		this.jbpmCore = jbpmCore;
 	}
 
 }

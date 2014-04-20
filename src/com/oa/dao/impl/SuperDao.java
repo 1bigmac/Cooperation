@@ -33,14 +33,14 @@ public class SuperDao implements SuperDaoInte {
 		return hibernateTemplate.get(clazz, id);
 	}
 
-	public List<Object> select(String hql) {
+	public Object select(String hql) {
 		return hibernateTemplate.find(hql);
 	}
 
 	public List<Object> find(String hql) {
 		return hibernateTemplate.find(hql);
 	}
-
+	
 	public List<Object> getChoice(List condition, String hql, String sign) {
 		List<Object> list = hibernateTemplate.getSessionFactory()
 				.getCurrentSession().createQuery(hql)

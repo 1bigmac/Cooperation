@@ -128,7 +128,8 @@ html {
 									cellspacing="0">
 									<tr>
 										<td width="24"><img src="images/ico07.gif" width="20"
-											height="18" /></td>
+											height="18" />
+										</td>
 										<td width="519"><select name="select2">
 												<option>按录入时间</option>
 												<option>按注销时间</option>
@@ -136,13 +137,15 @@ html {
 											readonly="readonly" /> <span class="newfont06">至</span> <input
 											name="textfield" type="text" size="12" readonly="readonly" />
 											<input name="Submit" type="button" class="right-button02"
-											value="查 询" /></td>
+											value="查 询" />
+										</td>
 										<td width="679" align="left"><a href="#"
 											onclick="sousuo()"> <input name="Submit" type="button"
 												class="right-button07" value="高级搜索" /> </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										</td>
 									</tr>
-								</table></td>
+								</table>
+							</td>
 						</tr>
 					</table>
 					<table id="subtree1" style="DISPLAY: " width="100%" border="0"
@@ -158,19 +161,24 @@ html {
 										</span> <input name="Submit" type="button" class="right-button08"
 											value="删除所选公文信息" onclick="deleteChose();" /> <input
 											name="Submit" type="button" class="right-button08"
-											value="添加公文信息" onclick="link();" /> 
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
- 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-  											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-  											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
- 
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+											value="添加公文信息" onclick="link();" />
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<input name="Submit" type="button" class="right-button08"
-											value="我的公文" onclick="javascript:window.location.href='DocumentAction!listMyDocument';" /> <input name="Submit"
-											type="button" class="right-button08" value="待审公文"
+											value="我的公文"
+											onclick="javascript:window.location.href='DocumentAction!listMyDocument';" />
+											<input name="Submit" type="button" class="right-button08"
+											value="待审公文"
 											onclick="javascript:window.location.href='DocumentAction!ApprovingDocumentList;'" />
-											 <input name="Submit" type="button" class="right-button08" value="已审核公文" onclick="javascript:window.location.href='DocumentAction!ApprovedDocumentList'" /> </td>
+											<input name="Submit" type="button" class="right-button08"
+											value="已审核公文"
+											onclick="javascript:window.location.href='DocumentAction!ApprovedDocumentList'" />
+										</td>
 									</tr>
 									<tr>
 										<td height="40" class="font42">
@@ -179,8 +187,9 @@ html {
 
 												<tr>
 													<td height="20" colspan="15" align="center"
-														bgcolor="#EEEEEE" class="tablestyle_title"> 
-														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 公文详细列表 &nbsp;</td>
+														bgcolor="#EEEEEE" class="tablestyle_title">
+														&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+														公文详细列表 &nbsp;</td>
 												</tr>
 												<tr>
 													<td width="6%" align="center" bgcolor="#EEEEEE">选择</td>
@@ -199,43 +208,62 @@ html {
 												</tr>
 												<s:iterator var="document" value="#request.myDocumentList">
 													<tr>
-														<td bgcolor="#FFFFFF"><input type="checkbox"
-															name="delid" value="${document.id }" /></td>
-														<td height="20" bgcolor="#FFFFFF"><a
-															href="DocumentAction!edit?person.id=${document.id }">${document.id}</a></td>
-														<td bgcolor="#FFFFFF"><a
-															href="DocumentAction!edit?person.id=${document.id }">${document.title}</a></td>
-														<td bgcolor="#FFFFFF">${document.createTime }</td>
-														<td bgcolor="#FFFFFF">${document.status }</td>
-														<td height="20" bgcolor="#FFFFFF">${document.workFlow.name}</td>
-														
-														<s:set var="num" value="#document.doc.lastIndexOf('\\\\')" />
-														<s:set var="doc"	value="#document.doc.substring((#num+1))" />
-														<td height="20" bgcolor="#FFFFFF">${doc}</td>
-														<td height="20" bgcolor="#FFFFFF"><a href="DocumentAction!approveHistoryList?document.id=${document.id }">查看</a>
+														<td bgcolor="#FFFFFF"  align="center"><input type="checkbox"
+															name="delid" value="${document.id }" />
 														</td>
+														<td height="20" bgcolor="#FFFFFF"  align="center">${document.id}
+														</td>
+														<td bgcolor="#FFFFFF"  align="center">
+														${document.title}
+														</td>
+														<td bgcolor="#FFFFFF"  align="center">${document.createTime }</td>
+														<td bgcolor="#FFFFFF"  align="center">${document.status }</td>
+														<td height="20" bgcolor="#FFFFFF"  align="center">${document.workFlow.name}</td>
 
-														<td bgcolor="#FFFFFF"><a
-															href="DocumentAction!edit?person.id=${document.id }">编辑</a>
-															&nbsp;|&nbsp;
-															<a href="yuangongsalary.html">提交(审批)</a>
-															&nbsp;|&nbsp;
-															 <a	href="DocumentAction!deleteDocument?delid=${document.id }">删除</a></td>
+														<s:set var="num" value="#document.doc.lastIndexOf('\\\\')" />
+														<s:set var="doc" value="#document.doc.substring((#num+1))" />
+														<td height="20" bgcolor="#FFFFFF"  align="center">
+														<a href="DocumentAction!download?document.doc=${document.doc }">
+														${doc}
+														</a>
+														</td>
+														<td height="20" bgcolor="#FFFFFF"  align="center"><a
+															href="DocumentAction!approveHistoryList?document.id=${document.id }">查看</a>
+														</td>
+														<td bgcolor="#FFFFFF" align="center"> 
+															<s:if test="#request.type=='document'">
+																	&nbsp;|&nbsp;
+																	<s:if test="#document.status=='新建'">
+																	<a href="DocumentAction!edit?document.id=${document.id }">编辑	</a> 
+																	<a href="javascript:window.location.href='DocumentAction!submitView?document.id=${document.id }'">提交</a>&nbsp;|&nbsp;
+																	<a href="DocumentAction!deleteDocument?delid=${document.id }">删除</a>
+																	</s:if> 
+															</s:if>
+															<s:elseif test="#request.type=='approvingDocument'">
+																<a href="JSP/shenpi.jsp?id=${document.id }">审批</a>&nbsp;|&nbsp;
+																<a href="javascript:window.location.href='DocumentAction!submitView?document.id=${document.id }'">提交</a>
+															</s:elseif>
+															<s:elseif test="#request.type == 'finishDocument'">
+																<a href="DocumentAction!deleteDocument?delid=${document.id }">删除</a>
+															</s:elseif>
+														</td>
 													</tr>
 												</s:iterator>
-											</table></td>
+											</table>
+										</td>
 									</tr>
-								</table></td>
+								</table>
+							</td>
 						</tr>
 					</table>
-				</form></td>
+				</form>
+			</td>
 		</tr>
 	</table>
 
 	<table width="95%" border="0" align="center" cellpadding="0"
 		cellspacing="0">
-		<td height="33">
-		<s:set var="pageCount"
+		<td height="33"><s:set var="pageCount"
 				value="(#request.totalSize-1)/10+1" />
 			<table width="100%" border="0" align="center" cellpadding="0"
 				cellspacing="0" class="right-font08">
@@ -252,21 +280,24 @@ html {
 							<a
 								href="DocumentAction!listMyDocument?index=${requestScope.currentIndex+1 }"
 								class="right-font08">下一页</a>
-						</s:if>
-						<s:else></s:else> | <a
+						</s:if> <s:else></s:else> | <a
 						href="DocumentAction!listMyDocument?index=${pageCount }"
 						class="right-font08">末页</a>] 转至：</td>
 					<td width="1%">
 						<table width="20" border="0" cellspacing="0" cellpadding="0">
 							<tr>
 								<td width="1%"><input name="index" type="text"
-									class="right-textfield03" size="1" /></td>
+									class="right-textfield03" size="1" />
+								</td>
 								<td width="87%"><input name="Submit23222" type="submit"
-									class="right-button06" value=" " /></td>
+									class="right-button06" value=" " />
+								</td>
 							</tr>
-						</table></td>
+						</table>
+					</td>
 				</tr>
-			</table></td>
+			</table>
+		</td>
 	</table>
 	<br>
 	<table border="0" cellpadding="0" cellspacing="0" style="width:100%">
@@ -281,28 +312,27 @@ html {
 					<form action="" method="post" enctype="multipart/form-data"
 						name="form" target="sypost">
 						<div class="MainDiv">
-						<table width="99%" border="0" cellpadding="0" cellspacing="0"
-				class="CContent">
+							<table width="99%" border="0" cellpadding="0" cellspacing="0"
+								class="CContent">
 
-							<tr>
-								<td align="right">添加流程定义</td>
-								<td align="center"><input name="xxx" type="file"
-									 />
-								</td>
-								<td align="center">&nbsp;</td>
-							</tr>
-							<tr>
-								<td align="right">添加流程图片</td>
-								<td align="center"><input name="xxx" type="file"
-									/>
-								</td>
-								<td align="center">&nbsp;</td>
-							</tr>
-						</table>
+								<tr>
+									<td align="right">添加流程定义</td>
+									<td align="center"><input name="xxx" type="file" />
+									</td>
+									<td align="center">&nbsp;</td>
+								</tr>
+								<tr>
+									<td align="right">添加流程图片</td>
+									<td align="center"><input name="xxx" type="file" />
+									</td>
+									<td align="center">&nbsp;</td>
+								</tr>
+							</table>
 						</div>
 					</form>
 					<br />
-				</fieldset></TD>
+				</fieldset>
+			</TD>
 		</TR>
 	</TABLE>
 

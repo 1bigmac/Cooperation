@@ -9,8 +9,9 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
 
-import com.oa.dao.JbpmCore;
 import com.oa.dao.WorkFlowDao;
+import com.oa.extend.JbpmCore;
+import com.oa.model.Users;
 import com.oa.model.WorkFlow;
 
 @Component("workFlowDao")
@@ -22,14 +23,44 @@ public class WorkFlowDaoImp implements WorkFlowDao {
 			String processImage) throws FileNotFoundException {
 		String workFlowName = jbpmCore
 				.deployProcessDefinition(processDefinition);
-
-		WorkFlow wf = new WorkFlow();
-		wf.setName(workFlowName);
-		wf.setProcessDefinition(processDefinition);
-		wf.setProcessImage(processImage);
+		WorkFlow wf= (WorkFlow) superDao.check("from WorkFlow w where w.name= ?",new Object[]{workFlowName});
+		if(wf == null){
+			wf = new WorkFlow();
+			wf.setName(workFlowName);
+			wf.setProcessDefinition(processDefinition);
+			wf.setProcessImage(processImage);
+		}
 		return superDao.add(wf);
 	}
+	
 
+	
+//	public void addOrUpdateWorkflow(String processDef,String processImage) throws FileNotFoundException {
+//		String workflowName = jbpmCore.deployProcessDefinition(processDef);
+//		//首先根据流程名称，查询是否已有Workflow对象
+////		Workflow wf = (Workflow)getSession().createQuery("select w from Workflow w where w.name = ?")
+////			.setParameter(0, workflowName)
+////			.uniqueResult();
+//		System.out.println(workflowName+"++++++++++++++");
+//		
+////		Users login=userService.login("from Users u where u.account = ? and u.password= ?", new Object[]{user.getAccount(),user.getPassword()});
+//
+//		WorkFlow wf= (WorkFlow) superDao.check("from WorkFlow w where w.name= ?",new Object[]{workflowName});
+////		System.out.println("workflowDaoImp +"+wf.toString());
+//		if(wf == null){
+//			wf = new WorkFlow();
+//			wf.setName(workflowName);
+//			wf.setProcessDefinition(processDef);
+//			wf.setProcessImage(processImage);
+////			getHibernateTemplate().save(wf);
+//			superDao.add(wf);
+//		}else{
+//			wf.setProcessDefinition(processDef);
+//			wf.setProcessImage(processImage);
+////			getHibernateTemplate().update(wf);
+//			superDao.update(wf);
+//		}
+//	}
 	public void updateWorkFlow(String processDefinition, String processImage,int id) {
 		String workFlowName = "";
 		try {
@@ -50,8 +81,8 @@ public class WorkFlowDaoImp implements WorkFlowDao {
 	}
 
 	public void deleteWorkFlow(WorkFlow workFlow) {
+		jbpmCore.delProcessDefinition(workFlow.getName());
 		superDao.delete(workFlow);
-		jbpmCore.deleteProcessDefinition(workFlow.getName());
 	}
 	public WorkFlow getWorkFlow(Class clazz,Serializable id){
 		return (WorkFlow) superDao.select(clazz, id);

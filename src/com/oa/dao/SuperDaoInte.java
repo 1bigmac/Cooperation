@@ -16,6 +16,7 @@ public interface SuperDaoInte {
 	public abstract void update(Object model);
 
 	public abstract Object select(Class clazz, Serializable id);
+	public Object select(String hql);
 
 	public abstract List<Object> find(String hql);
 

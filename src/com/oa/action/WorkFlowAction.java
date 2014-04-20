@@ -1,17 +1,13 @@
 package com.oa.action;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
-import javax.persistence.Id;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.io.FileUtils;
@@ -49,7 +45,7 @@ public class WorkFlowAction extends ActionSupport {
 			System.out.println(ids[i]);
 		}
 		returns = "WorkFlowAction!listWorkFlow";
-		workFlowService.deletePersons(ids);
+		workFlowService.deleteWorkFLow(ids);
 		return "operator_success";
 	}
 
@@ -68,8 +64,10 @@ public class WorkFlowAction extends ActionSupport {
 				}
 				if(currentFileName.size()==2){
 					workFlowService.add(currentFileName.get(0).getAbsolutePath(),currentFileName.get(1).getAbsolutePath());
+//					workFlowService.addOrUpdateWorkflow(currentFileName.get(0).getAbsolutePath(),currentFileName.get(1).getAbsolutePath());
 				}else if(currentFileName.size()==1){
 					workFlowService.add(currentFileName.get(0).getAbsolutePath(), "");
+//					workFlowService.addOrUpdateWorkflow(currentFileName.get(0).getAbsolutePath(), "");
 				}
 			} catch (IOException e) {
 				flag = false;
@@ -101,9 +99,7 @@ public class WorkFlowAction extends ActionSupport {
 		}
 	}
 
-	private void deloy(String arg1,String arg2) {
-		workFlowService.add(arg1,arg2);
-	}
+
 
 	private boolean addtoServer(int i) throws IOException {
 		if (uploadFiles.get(i).length() != 0) {

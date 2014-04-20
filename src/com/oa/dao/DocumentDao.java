@@ -55,9 +55,9 @@ public interface DocumentDao {
 	 * @param hql
 	 * @return
 	 */
-	public List<Document> searchAllMyDocument(Class clazz,int userId);
+	public List<Document> searchAllMyDocument(Class clazz,int userId,boolean finished);
 	
-	public List<Document> searchPageDocument(Class clazz, int userId,int index);
+	public List<Document> searchPageDocument(Class clazz, int userId,int index,boolean finished);
 	
 	
 	// 查找用户创建的所有公文
@@ -89,7 +89,7 @@ public interface DocumentDao {
 	
 	
 	
-	public List searchNextStep(int documentId,int userId);
+	public List searchNextStep(int documentId,String userId);
 	
 	/**
 	 * 提交到流程
@@ -97,6 +97,5 @@ public interface DocumentDao {
 	 * @param documentId 被提交的公文ID
 	 * @param transistionName 要提交到哪里去
 	 */
-	public abstract void submitToWorkFlow(int userId, int documentId,
-			String transistionName);
+	public void submitToWorkFlow(int userId, int documentId, String transitionName) ;
 }

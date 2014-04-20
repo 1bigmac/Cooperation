@@ -96,7 +96,7 @@ public class Document implements Serializable{
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	@ManyToOne(cascade={CascadeType.ALL},fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="creator", referencedColumnName="id")
 	public Users getUsers() {
 		return users;

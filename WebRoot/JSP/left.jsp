@@ -137,7 +137,7 @@ function list(idstr){
 								<img id="xiaotu20" src="images/ico06.gif" width="8" height="12" />
 							</td>
 							<td width="91%">
-								<a href="addrenwu.jsp" target="mainFrame" class="left-font03"
+								<a href="EventAction!getFeeds" target="mainFrame" class="left-font03"
 									onClick="tupian('20');">创建任务</a>
 							</td>
 						</tr>
@@ -437,6 +437,15 @@ function list(idstr){
 							<td width="91%">
 								<a href="DocumentAction!listMyDocument" target="mainFrame"
 									class="left-font03" onClick="tupian('11');">公文列表</a>
+							</td>
+						</tr>
+							<tr>
+							<td width="9%" height="20">
+								<img id="xiaotu11" src="images/ico06.gif" width="8" height="12" />
+							</td>
+							<td width="91%">
+								<a href="DocumentAction!finishDocument" target="mainFrame"
+									class="left-font03" onClick="tupian('11');">归档管理</a>
 							</td>
 						</tr>
 						<tr>
